@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+		<title>Formulaire taches</title>
+
+		<script>
+			let Priorite=[{"idPriorite":1,"nomPriorite":"Obligatoire & Urgent"},{"idPriorite":2,"nomPriorite":"Obligatoire"},{"idPriorite":3,"nomPriorite":"Important"},{"idPriorite":4,"nomPriorite":"Optionnel"}]
+			let Etat=[{"idEtat":1,"nomEtat":"Pas commence"},{"idEtat":2,"nomEtat":"En cours"},{"idEtat":4,"nomEtat":"Fini"}];
+			console.log(Etat);
+			console.log(Priorite);
+			let Type=[{"idType":1,"nomType":"Game Design"},{"idType":2,"nomType":"Programmation"},{"idType":3,"nomType":"Game Art"},{"idType":4,"nomType":"Sound Design"},{"idType":5,"nomType":"Communication"},{"idType":6,"nomType":"Autres"}];
+			console.log(Type);
+			let Personnes=[{"idPers":1, "nomPers":"Gaëtan"},{"idPers":2, "nomPers":"Joffrey"},{"idPers":3, "nomPers": "Luc"},{"idPers":4, "nomPers": "Nicolas"},{"idPers":4, "nomPers": "P-A"}];
+			console.log(Personnes);
+
+			let taskList = [];
+			let dataString = localStorage.getItem("tasks");
+			if(dataString != "" && dataString != null) {
+				taskList = JSON.parse(dataString);
+			}
+
+			console.log(dataString);
+
+			
+			console.log(taskList);
+
+			function saveTask() {
+				taskName = document.getElementById("nomTache").value;
+				taskStart = document.getElementById("debutTache").value;
+				taskEnd = document.getElementById("finTache").value;
+				taskType = document.getElementById("type").value;
+				taskPers = document.getElementById("personnes").value;
+				taskPriority = document.getElementById("priorite").value;
+				taskState = document.getElementById("etat").value;
+
+				var form = document.getElementById("form");
+				var message = document.getElementById("formStatus");
+
+				if(taskName != "" && taskStart != "" && taskEnd != "" && taskPers != "" && taskType != "" && taskPriority != "" && taskState != "") {
+					let idNewTask = taskList.length + 1;
+					newTask = {
+						"taskId": idNewTask,
+						"taskName": taskName,
+						"taskType": taskType,
+						"taskStart": taskStart,
+						"taskEnd": taskEnd,
+						"taskPers": taskPers,
+						"taskPriority": taskPriority,
+						"taskState": taskState
+					};
+					taskList.push(newTask);
+					console.log(taskList);
+					let taskListString = JSON.stringify(taskList);
+					localStorage.setItem("tasks", taskListString);
+					message.innerHTML = "Tâche ajoutée !";
+					message.style = "color: #00FF00";
+					form.reset();
+				} else {
+					message.innerHTML = "Erreur ! Veuillez remplir tous les champs du formulaire !"
+					message.style = "color: #FF0000";
+				}
+			}
+		</script>
+	</head>
+
+
+	<body style="text-align: center;">
+		<h1>Ajouter une nouvelle tache</h1>
+		<div id="formStatus"><br></div><br>
+		<form action="" method="get" id="form">
+			Nom de la tache : <input type="text" name="nomTache" id="nomTache" placeholder="Programmer une arme" required><br>
+			Type : <select name="type" id="type" required>
+				<option value="" selected disabled>-- Choisissez un type --</option>
+			</select><br>
+			<script>
+				Type.forEach(function(item, index) {
+					let option=`<option value="${item.idType}">${item.nomType}</option>`;
+					document.getElementById("type").insertAdjacentHTML('beforeend',option);
+				});
+			</script>
+
+			Date debut : <input type="date" name="debutTache" id="debutTache" required><br>
+			Date fin : <input type="date" name="finTache" id="finTache" required><br>
+
+			Personne assignee : <select name="personneAssignee" id="personnes" required>
+				<option value="" selected disabled>-- Choisissez qui est assigné·e --</option>
+			</select><br>
+			<script>
+				Personnes.forEach(function(item, index) {
+					let option=`<option value="${item.idPers}">${item.nomPers}</option>`;
+					document.getElementById("personnes").insertAdjacentHTML('beforeend',option);
+				});
+			</script>
+
+			Priorite : <select name="priorite" id="priorite" required>
+				<option value="" selected disabled>-- Choisissez votre priorité --</option>
+			</select><br>
+			<script>
+				Priorite.forEach(function(item, index) {
+					let option=`<option value="${item.idPriorite}">${item.nomPriorite}</option>`;
+					document.getElementById("priorite").insertAdjacentHTML('beforeend',option);
+				});
+			</script>
+
+			Etat : <select name="etat" id="etat" required>
+				<option value="" selected disabled>-- Quel est l'état de la tâche ?</option>
+			</select><br><br>
+			<script>
+				Etat.forEach(function(item, index) {
+					let option=`<option value="${item.idEtat}">${item.nomEtat}</option>`;
+					document.getElementById("etat").insertAdjacentHTML('beforeend',option);
+				});
+			</script>
+
+			<button type="button" onclick="saveTask()">Sauvegarder la tâche</button>
+		</form>
+
+		<br>
+
+
+	</body>
+</html>

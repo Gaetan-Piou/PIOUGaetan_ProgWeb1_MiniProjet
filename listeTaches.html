@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+		<title>Liste des Tâches</title>
+		<script type="text/javascript">
+			let priorite=[{"idPriorite":1,"nomPriorite":"Obligatoire & Urgent"},{"idPriorite":2,"nomPriorite":"Obligatoire"},{"idPriorite":3,"nomPriorite":"Important"},{"idPriorite":4,"nomPriorite":"Optionnel"}]
+			let etat=[{"idEtat":1,"nomEtat":"Pas commence"},{"idEtat":2,"nomEtat":"En cours"},{"idEtat":4,"nomEtat":"Fini"}];
+			console.log(etat);
+			console.log(priorite);
+			let type=[{"idType":1,"nomType":"Game Design"},{"idType":2,"nomType":"Programmation"},{"idType":3,"nomType":"Game Art"},{"idType":4,"nomType":"Sound Design"},{"idType":5,"nomType":"Communication"},{"idType":6,"nomType":"Autres"}];
+			console.log(type);
+			let personnes=[{"idPers":1, "nomPers":"Gaëtan"},{"idPers":2, "nomPers":"Joffrey"},{"idPers":3, "nomPers": "Luc"},{"idPers":4, "nomPers": "Nicolas"},{"idPers":4, "nomPers": "P-A"}];
+		</script>
+	</head>
+
+
+	<body style="text-align: center;">
+		<table width="100%">
+			<thead style="color: #FFFFFF; background: #000000;">
+				<tr>
+					<th>
+						ID
+					</th>
+					<th>
+						Nom
+					</th>
+					<th>
+						Type
+					</th>
+					<th>
+						Début
+					</th>
+					<th>
+						Fin
+					</th>
+					<th>
+						Personne assignée
+					</th>
+					<th>
+						Importance
+					</th>
+					<th>
+						État
+					</th>
+				</tr>
+			</thead>
+		</table>
+
+		<script type="text/javascript">
+			let taskList = [];
+			let dataString = localStorage.getItem("tasks");
+			console.log(dataString);
+			if(dataString != "" && dataString != null) {
+				taskList = JSON.parse(dataString);
+			}
+
+			console.log(taskList)
+
+			taskList.forEach(function(item, index) {
+				let searchedType = item.taskType;
+				let foundType = type.find(typeElement => typeElement.idType == searchedType).nomType;
+				let searchedPers = item.taskPers;
+				let foundPers = personnes.find(persElement => persElement.idType == searchedPers).nomPers;
+				let searchedPriority = item.taskPriority;
+				let foundPriority = priorite.find(prioElement => prioElement.idPriorite == searchedPriority).nomPriorite;
+				let searchedState = item.taskState;
+				let foundState = etat.find(stateElement => typeElement.idEtat == searchedState).nomEtat;
+			});
+		</script>
+	</body>
+</html>
