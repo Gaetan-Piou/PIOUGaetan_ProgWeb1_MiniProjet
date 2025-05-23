@@ -5,11 +5,11 @@
 		<meta name="viewport" content="width=<device-width>, initial-scale=1.0">
 		<title>Liste des Tâches</title>
 		<script type="text/javascript">
-			let priorite=[{"idPriorite":1,"nomPriorite":"Obligatoire & Urgent"},{"idPriorite":2,"nomPriorite":"Obligatoire"},{"idPriorite":3,"nomPriorite":"Important"},{"idPriorite":4,"nomPriorite":"Optionnel"}]
-			let etat=[{"idEtat":1,"nomEtat":"Pas commence"},{"idEtat":2,"nomEtat":"En cours"},{"idEtat":4,"nomEtat":"Fini"}];
+			let priorite=[{"idPriorite":"1","nomPriorite":"Obligatoire & Urgent"},{"idPriorite":"2","nomPriorite":"Obligatoire"},{"idPriorite":"3","nomPriorite":"Important"},{"idPriorite":"4","nomPriorite":"Optionnel"}]
+			let etat=[{"idEtat":"1","nomEtat":"Pas commence"},{"idEtat":"2","nomEtat":"En cours"},{"idEtat":"4","nomEtat":"Fini"}];
 			console.log(etat);
 			console.log(priorite);
-			let type=[{"idType":1,"nomType":"Game Design"},{"idType":2,"nomType":"Programmation"},{"idType":3,"nomType":"Game Art"},{"idType":4,"nomType":"Sound Design"},{"idType":5,"nomType":"Communication"},{"idType":6,"nomType":"Autres"}];
+			let type=[{"idType":"1","nomType":"Game Design"},{"idType":"2","nomType":"Programmation"},{"idType":"3","nomType":"Game Art"},{"idType":"4","nomType":"Sound Design"},{"idType":"5","nomType":"Communication"},{"idType":"6","nomType":"Autres"}];
 			console.log(type);
 			let personnes=[{"idPers":1, "nomPers":"Gaëtan"},{"idPers":2, "nomPers":"Joffrey"},{"idPers":3, "nomPers": "Luc"},{"idPers":4, "nomPers": "Nicolas"},{"idPers":4, "nomPers": "P-A"}];
 		</script>
@@ -89,13 +89,13 @@
 							${item.taskEnd}
 						</td>
 						<td>
-							${item.foundPers}
+							${foundPers}
 						</td>
 						<td>
-							${item.foundPriority}
+							${foundPriority}
 						</td>
 						<td>
-							${item.taskState}
+							${foundState}
 						</td>
 						
 				`;
