@@ -69,6 +69,7 @@
 		</table>
 
 		<script type="text/javascript">
+			let impair = true;
 			taskList.forEach(function(item, index) {
 				let searchedType = item.taskType;
 				let foundType = type.find(typeElement => typeElement.idType == searchedType).nomType;
@@ -120,6 +121,10 @@
 					}
 					document.getElementById(`selState_${item.taskId}`).insertAdjacentHTML('beforeend',option);
 				});
+
+				if(impair) {
+					document.getElementById(`row_${item.taskId}`).style = "background: #AAA"
+				}
 
 			});
 		</script>
