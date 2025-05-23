@@ -17,6 +17,7 @@
 
 
 	<body style="text-align: center;">
+		<h1>Liste des tâches</h1>
 		<table width="100%">
 			<thead style="color: #FFFFFF; background: #000000;">
 				<tr>
@@ -98,7 +99,7 @@
 						</td>
 						
 				`;
-				document.getElementById("tableau").insertAdjacentHTML('beforeend')
+				document.getElementById("tableau").insertAdjacentHTML('beforeend', row);
 			});
 		</script>
 	</body>
