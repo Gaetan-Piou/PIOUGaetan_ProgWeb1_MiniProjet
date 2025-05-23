@@ -26,6 +26,8 @@
 				let changedElem = taskList.find(taskElem => taskElem.taskId == id);
 				changedElem.taskState = document.getElementById(`selState_${id}`).value;
 				console.log(taskList);
+				let taskListString = JSON.stringify(taskList);
+				localStorage.setItem("tasks", taskListString);
 			}
 		</script>
 	</head>
