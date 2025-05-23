@@ -73,33 +73,42 @@
 
 				let row = `
 					<tr>
-						<td>
+						<td id="id_${item.taskId}">
 							${item.taskId}
 						</td>
-						<td>
+						<td id="name_${item.taskId}">
 							${item.taskName}
 						</td>
-						<td>
+						<td id="type_${item.taskId}">
 							${foundType}
 						</td>
-						<td>
+						<td id="start_${item.taskId}">
 							${item.taskStart}
 						</td>
-						<td>
+						<td id="end_${item.taskId}">
 							${item.taskEnd}
 						</td>
-						<td>
+						<td id="pers_${item.taskId}">
 							${foundPers}
 						</td>
-						<td>
+						<td id="prio_${item.taskId}">
 							${foundPriority}
 						</td>
-						<td>
-							${foundState}
+						<td id="state_${item.taskId}">
+							<select id="selState_${item.taskId}">
+							</select>
 						</td>
 						
 				`;
 				document.getElementById("tableau").insertAdjacentHTML('beforeend', row);
+				etat.forEach(function(item2, index2) {
+					if(item2.idEtat == item.taskState) {
+						let option=`<option value="${item2.idEtat}" selected>${item2.nomEtat}</option>`;
+					} else {
+						let option=`<option value="${item2.idEtat}">${item2.nomEtat}</option>`;
+					}
+					document.getElementById(`selState_${item.taskId}`).insertAdjacentHTML('beforeend',option);
+				});
 			});
 		</script>
 	</body>
