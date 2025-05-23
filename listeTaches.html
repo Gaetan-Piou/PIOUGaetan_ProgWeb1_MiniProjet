@@ -102,10 +102,11 @@
 				`;
 				document.getElementById("tableau").insertAdjacentHTML('beforeend', row);
 				etat.forEach(function(item2, index2) {
+					let option;
 					if(item2.idEtat == item.taskState) {
-						let option=`<option value="${item2.idEtat}" selected>${item2.nomEtat}</option>`;
+						option=`<option value="${item2.idEtat}" selected>${item2.nomEtat}</option>`;
 					} else {
-						let option=`<option value="${item2.idEtat}">${item2.nomEtat}</option>`;
+						option=`<option value="${item2.idEtat}">${item2.nomEtat}</option>`;
 					}
 					document.getElementById(`selState_${item.taskId}`).insertAdjacentHTML('beforeend',option);
 				});
