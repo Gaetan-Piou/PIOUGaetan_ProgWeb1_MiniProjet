@@ -35,6 +35,7 @@
 
 	<body style="text-align: center;">
 		<h1>Liste des tâches</h1>
+		<h2>Tâches à faire</h2>
 		<table width="100%">
 			<thead style="color: #FFFFFF; background: #000000;">
 				<tr>
@@ -70,6 +71,8 @@
 
 		<script type="text/javascript">
 			let impair = true;
+			let fini = false;
+
 			taskList.forEach(function(item, index) {
 				let searchedType = item.taskType;
 				let foundType = type.find(typeElement => typeElement.idType == searchedType).nomType;
@@ -130,6 +133,40 @@
 
 			});
 		</script>
+
+		<h2>Tâches faites</h2>
+		<table width="100%">
+			<thead style="color: #FFFFFF; background: #000000;">
+				<tr>
+					<th>
+						ID
+					</th>
+					<th>
+						Nom
+					</th>
+					<th>
+						Type
+					</th>
+					<th>
+						Début
+					</th>
+					<th>
+						Fin
+					</th>
+					<th>
+						Personne assignée
+					</th>
+					<th>
+						Importance
+					</th>
+					<th>
+						État
+					</th>
+				</tr>
+			</thead>
+			<tbody id="tableauFini">
+			</tbody>
+		</table>
 
 		<br>
 		<a href="index.html">Ajouter une nouvelle tâche</a>
