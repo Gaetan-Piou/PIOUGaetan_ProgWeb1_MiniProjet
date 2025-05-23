@@ -46,6 +46,8 @@
 					</th>
 				</tr>
 			</thead>
+			<tbody id="tableau">
+			</tbody>
 		</table>
 
 		<script type="text/javascript">
@@ -67,6 +69,36 @@
 				let foundPriority = priorite.find(prioElement => prioElement.idPriorite == searchedPriority).nomPriorite;
 				let searchedState = item.taskState;
 				let foundState = etat.find(stateElement => stateElement.idEtat == searchedState).nomEtat;
+
+				let row = `
+					<tr>
+						<td>
+							${item.taskId}
+						</td>
+						<td>
+							${item.taskName}
+						</td>
+						<td>
+							${foundType}
+						</td>
+						<td>
+							${item.taskStart}
+						</td>
+						<td>
+							${item.taskEnd}
+						</td>
+						<td>
+							${item.foundPers}
+						</td>
+						<td>
+							${item.foundPriority}
+						</td>
+						<td>
+							${item.taskState}
+						</td>
+						
+				`;
+				document.getElementById("tableau").insertAdjacentHTML('beforeend')
 			});
 		</script>
 	</body>
