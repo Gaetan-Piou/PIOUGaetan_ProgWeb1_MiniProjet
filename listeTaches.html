@@ -21,6 +21,12 @@
 			}
 
 			console.log(taskList)
+
+			function stateChange(id) {
+				let changedElem = taskList.find(taskElem => taskElem.taskId == id);
+				changedElem.taskState = document.getElementById(`selState_${id}`).value;
+				console.log(taskList);
+			}
 		</script>
 	</head>
 
@@ -95,7 +101,7 @@
 							${foundPriority}
 						</td>
 						<td id="state_${item.taskId}">
-							<select id="selState_${item.taskId}">
+							<select id="selState_${item.taskId}" onchange="stateChange(${item.taskId})">
 							</select>
 						</td>
 						
