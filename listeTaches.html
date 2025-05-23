@@ -62,7 +62,7 @@
 				let searchedType = item.taskType;
 				let foundType = type.find(typeElement => typeElement.idType == searchedType).nomType;
 				let searchedPers = item.taskPers;
-				let foundPers = personnes.find(persElement => persElement.idType == searchedPers).nomPers;
+				let foundPers = personnes.find(persElement => persElement.idPers == searchedPers).nomPers;
 				let searchedPriority = item.taskPriority;
 				let foundPriority = priorite.find(prioElement => prioElement.idPriorite == searchedPriority).nomPriorite;
 				let searchedState = item.taskState;
