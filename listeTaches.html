@@ -12,6 +12,15 @@
 			let type=[{"idType":"1","nomType":"Game Design"},{"idType":"2","nomType":"Programmation"},{"idType":"3","nomType":"Game Art"},{"idType":"4","nomType":"Sound Design"},{"idType":"5","nomType":"Communication"},{"idType":"6","nomType":"Autres"}];
 			console.log(type);
 			let personnes=[{"idPers":1, "nomPers":"Gaëtan"},{"idPers":2, "nomPers":"Joffrey"},{"idPers":3, "nomPers": "Luc"},{"idPers":4, "nomPers": "Nicolas"},{"idPers":4, "nomPers": "P-A"}];
+
+			let taskList = [];
+			let dataString = localStorage.getItem("tasks");
+			console.log(dataString);
+			if(dataString != "" && dataString != null) {
+				taskList = JSON.parse(dataString);
+			}
+
+			console.log(taskList)
 		</script>
 	</head>
 
@@ -52,15 +61,6 @@
 		</table>
 
 		<script type="text/javascript">
-			let taskList = [];
-			let dataString = localStorage.getItem("tasks");
-			console.log(dataString);
-			if(dataString != "" && dataString != null) {
-				taskList = JSON.parse(dataString);
-			}
-
-			console.log(taskList)
-
 			taskList.forEach(function(item, index) {
 				let searchedType = item.taskType;
 				let foundType = type.find(typeElement => typeElement.idType == searchedType).nomType;
@@ -72,7 +72,7 @@
 				let foundState = etat.find(stateElement => stateElement.idEtat == searchedState).nomEtat;
 
 				let row = `
-					<tr>
+					<tr id="row_${item.taskId}">
 						<td id="id_${item.taskId}">
 							${item.taskId}
 						</td>
@@ -101,6 +101,8 @@
 						
 				`;
 				document.getElementById("tableau").insertAdjacentHTML('beforeend', row);
+
+				//
 				etat.forEach(function(item2, index2) {
 					let option;
 					if(item2.idEtat == item.taskState) {
@@ -110,7 +112,11 @@
 					}
 					document.getElementById(`selState_${item.taskId}`).insertAdjacentHTML('beforeend',option);
 				});
+
 			});
 		</script>
+
+		<br>
+		<a href="/index.html">Ajouter une nouvelle tâche</a>
 	</body>
 </html>
