@@ -4,6 +4,17 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=<device-width>, initial-scale=1.0">
 		<title>Liste des Tâches</title>
+		<style>
+			body {
+				display: grid;
+				grid-row-gap: 15px;
+				grid-column-gap: 10px;
+				padding: 5px;
+				grid-template-columns: minmax(150px, 1fr);
+				box-sizing: border-box;
+			}
+		</style>
+
 		<script type="text/javascript">
 			let priorite=[{"idPriorite":"1","nomPriorite":"Obligatoire & Urgent"},{"idPriorite":"2","nomPriorite":"Obligatoire"},{"idPriorite":"3","nomPriorite":"Important"},{"idPriorite":"4","nomPriorite":"Optionnel"}]
 			let etat=[{"idEtat":"1","nomEtat":"Pas commence"},{"idEtat":"2","nomEtat":"En cours"},{"idEtat":"4","nomEtat":"Fini"}];
