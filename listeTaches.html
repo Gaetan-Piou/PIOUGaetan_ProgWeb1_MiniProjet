@@ -146,7 +146,7 @@
 						document.getElementById(`selState_${item.taskId}`).insertAdjacentHTML('beforeend',option);
 					});
 
-					if(item.taskEnd < date || item.taskStart < date && searchedState < 3) {
+					if(item.taskEnd < date || item.taskStart < date && searchedState == 1) {
 						style = style + "color: #F00;"
 					}
 
