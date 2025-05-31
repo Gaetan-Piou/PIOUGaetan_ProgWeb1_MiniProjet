@@ -144,9 +144,15 @@
 						document.getElementById(`selState_${item.taskId}`).insertAdjacentHTML('beforeend',option);
 					});
 
-					if(impair) {
-						document.getElementById(`row_${item.taskId}`).style = "background: #CCC"
+					if(item.taskEnd < date || item.taskStart < date) {
+						style = style + "color: #F00;"
 					}
+
+					if(impair) {
+						style = style + "background: #CCC;"
+					}
+
+					document.getElementById(`row_${item.taskId}`).style = style;
 
 					impair = !impair;
 				} else {
@@ -220,13 +226,11 @@
 							document.getElementById(`selState_${item.taskId}`).insertAdjacentHTML('beforeend',option);
 						});
 
-						if(item.taskEnd < date || item.taskStart < date) {
-							style = style + "color: #F00"
-						}
-
 						if(impair) {
 							style = style + "background: #CCC;"
 						}
+
+						document.getElementById(`row_${item.taskId}`).style = style;
 
 						impair = !impair;
 					}
