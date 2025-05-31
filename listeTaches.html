@@ -185,7 +185,7 @@
 
 					let style = "";
 
-					if(searchedState == 4) {
+					if(searchedState > 2) {
 						let row = `
 							<tr id="row_${item.taskId}">
 								<td id="id_${item.taskId}">
@@ -228,11 +228,15 @@
 							document.getElementById(`selState_${item.taskId}`).insertAdjacentHTML('beforeend',option);
 						});
 
+						if(searchedState == 4) {
+							style = style + "color: #666;"
+						}
+
 						if(impair) {
 							style = style + "background: #CCC;"
 						}
 
-						//document.getElementById(`row_${item.taskId}`).style = style;
+						document.getElementById(`row_${item.taskId}`).style = style;
 
 						impair = !impair;
 					}
