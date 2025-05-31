@@ -101,6 +101,8 @@
 				let searchedState = item.taskState;
 				let foundState = etat.find(stateElement => stateElement.idEtat == searchedState).nomEtat;
 
+				let style = "";
+
 				if(searchedState != 4) {
 					let row = `
 						<tr id="row_${item.taskId}">
@@ -230,7 +232,7 @@
 							style = style + "background: #CCC;"
 						}
 
-						document.getElementById(`row_${item.taskId}`).style = style;
+						//document.getElementById(`row_${item.taskId}`).style = style;
 
 						impair = !impair;
 					}
