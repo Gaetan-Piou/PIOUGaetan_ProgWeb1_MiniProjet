@@ -46,6 +46,7 @@
 				console.log(taskList);
 				let taskListString = JSON.stringify(taskList);
 				localStorage.setItem("tasks", taskListString);
+				initialisationTableau();
 			}
 		</script>
 	</head>
@@ -88,90 +89,10 @@
 		</table>
 
 		<script type="text/javascript">
-			let impair = true;
-			let fini = false;
-
-			taskList.forEach(function(item, index) {
-				let searchedType = item.taskType;
-				let foundType = type.find(typeElement => typeElement.idType == searchedType).nomType;
-				let searchedPers = item.taskPers;
-				let foundPers = personnes.find(persElement => persElement.idPers == searchedPers).nomPers;
-				let searchedPriority = item.taskPriority;
-				let foundPriority = priorite.find(prioElement => prioElement.idPriorite == searchedPriority).nomPriorite;
-				let searchedState = item.taskState;
-				let foundState = etat.find(stateElement => stateElement.idEtat == searchedState).nomEtat;
-
-				let style = "";
-
-				if(searchedState < 3) {
-					let row = `
-						<tr id="row_${item.taskId}">
-							<td id="id_${item.taskId}">
-								${item.taskId}
-							</td>
-							<td id="name_${item.taskId}">
-								${item.taskName}
-							</td>
-							<td id="type_${item.taskId}">
-								${foundType}
-							</td>
-							<td id="start_${item.taskId}">
-								${item.taskStart}
-							</td>
-							<td id="end_${item.taskId}">
-								${item.taskEnd}
-							</td>
-							<td id="pers_${item.taskId}">
-								${foundPers}
-							</td>
-							<td id="prio_${item.taskId}">
-								${foundPriority}
-							</td>
-							<td id="state_${item.taskId}">
-								<select id="selState_${item.taskId}" onchange="stateChange(${item.taskId})">
-								</select>
-							</td>
-							
-					`;
-					document.getElementById("tableau").insertAdjacentHTML('beforeend', row);
-
-					//Gestion de la selection de nouvel etat pour la tâche
-					etat.forEach(function(item2, index2) {
-						let option;
-						if(item2.idEtat == item.taskState) {
-							option=`<option value="${item2.idEtat}" selected>${item2.nomEtat}</option>`;
-						} else {
-							option=`<option value="${item2.idEtat}">${item2.nomEtat}</option>`;
-						}
-						document.getElementById(`selState_${item.taskId}`).insertAdjacentHTML('beforeend',option);
-					});
-
-					if(item.taskEnd < date || item.taskStart < date && searchedState == 1) {
-						style = style + "color: #F00;"
-					}
-
-					if(impair) {
-						style = style + "background: #CCC;"
-					}
-
-					document.getElementById(`row_${item.taskId}`).style = style;
-
-					impair = !impair;
-				} else {
-					fini = true;
-				}
-			});
-
-			if(fini == true) {
-				let row = `
-					<tr style="background: #555; color: #FFF; font-style: italic;">
-						<td colspan="8">
-							Tâches finies
-						</td>
-					</tr>
-				`;
-
-				document.getElementById("tableau").insertAdjacentHTML('beforeend', row);
+			function initialisationTableau() {
+				document.getElementById("tableau").innerHTML = "";
+				let impair = true;
+				let fini = false;
 
 				taskList.forEach(function(item, index) {
 					let searchedType = item.taskType;
@@ -185,7 +106,7 @@
 
 					let style = "";
 
-					if(searchedState > 2) {
+					if(searchedState < 3) {
 						let row = `
 							<tr id="row_${item.taskId}">
 								<td id="id_${item.taskId}">
@@ -228,8 +149,8 @@
 							document.getElementById(`selState_${item.taskId}`).insertAdjacentHTML('beforeend',option);
 						});
 
-						if(searchedState == 4) {
-							style = style + "color: #666;"
+						if(item.taskEnd < date || item.taskStart < date && searchedState == 1) {
+							style = style + "color: #F00;"
 						}
 
 						if(impair) {
@@ -239,9 +160,94 @@
 						document.getElementById(`row_${item.taskId}`).style = style;
 
 						impair = !impair;
+					} else {
+						fini = true;
 					}
 				});
+
+				if(fini == true) {
+					let row = `
+						<tr style="background: #555; color: #FFF; font-style: italic;">
+							<td colspan="8">
+								Tâches finies
+							</td>
+						</tr>
+					`;
+
+					document.getElementById("tableau").insertAdjacentHTML('beforeend', row);
+
+					taskList.forEach(function(item, index) {
+						let searchedType = item.taskType;
+						let foundType = type.find(typeElement => typeElement.idType == searchedType).nomType;
+						let searchedPers = item.taskPers;
+						let foundPers = personnes.find(persElement => persElement.idPers == searchedPers).nomPers;
+						let searchedPriority = item.taskPriority;
+						let foundPriority = priorite.find(prioElement => prioElement.idPriorite == searchedPriority).nomPriorite;
+						let searchedState = item.taskState;
+						let foundState = etat.find(stateElement => stateElement.idEtat == searchedState).nomEtat;
+
+						let style = "";
+
+						if(searchedState > 2) {
+							let row = `
+								<tr id="row_${item.taskId}">
+									<td id="id_${item.taskId}">
+										${item.taskId}
+									</td>
+									<td id="name_${item.taskId}">
+										${item.taskName}
+									</td>
+									<td id="type_${item.taskId}">
+										${foundType}
+									</td>
+									<td id="start_${item.taskId}">
+										${item.taskStart}
+									</td>
+									<td id="end_${item.taskId}">
+										${item.taskEnd}
+									</td>
+									<td id="pers_${item.taskId}">
+										${foundPers}
+									</td>
+									<td id="prio_${item.taskId}">
+										${foundPriority}
+									</td>
+									<td id="state_${item.taskId}">
+										<select id="selState_${item.taskId}" onchange="stateChange(${item.taskId})">
+										</select>
+									</td>
+									
+							`;
+							document.getElementById("tableau").insertAdjacentHTML('beforeend', row);
+
+							//Gestion de la selection de nouvel etat pour la tâche
+							etat.forEach(function(item2, index2) {
+								let option;
+								if(item2.idEtat == item.taskState) {
+									option=`<option value="${item2.idEtat}" selected>${item2.nomEtat}</option>`;
+								} else {
+									option=`<option value="${item2.idEtat}">${item2.nomEtat}</option>`;
+								}
+								document.getElementById(`selState_${item.taskId}`).insertAdjacentHTML('beforeend',option);
+							});
+
+							if(searchedState == 4) {
+								style = style + "color: #666;"
+							}
+
+							if(impair) {
+								style = style + "background: #CCC;"
+							}
+
+							document.getElementById(`row_${item.taskId}`).style = style;
+
+							impair = !impair;
+						}
+					});
+				}
 			}
+
+			initialisationTableau();
 		</script>
 
 		<br>
