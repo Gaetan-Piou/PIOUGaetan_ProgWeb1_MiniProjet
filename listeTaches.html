@@ -21,7 +21,7 @@
 
 		<script type="text/javascript">
 			let priorite=[{"idPriorite":"1","nomPriorite":"Obligatoire & Urgent"},{"idPriorite":"2","nomPriorite":"Obligatoire"},{"idPriorite":"3","nomPriorite":"Important"},{"idPriorite":"4","nomPriorite":"Optionnel"}]
-			let etat=[{"idEtat":"1","nomEtat":"Pas commence"},{"idEtat":"2","nomEtat":"En cours"},{"idEtat":"4","nomEtat":"Fini"}];
+			let etat=[{"idEtat":"1","nomEtat":"Pas commencé"},{"idEtat":"2","nomEtat":"En cours"},{"idEtat":"4","nomEtat":"Fini"}];
 			console.log(etat);
 			console.log(priorite);
 			let type=[{"idType":"1","nomType":"Game Design"},{"idType":"2","nomType":"Programmation"},{"idType":"3","nomType":"Game Art"},{"idType":"4","nomType":"Sound Design"},{"idType":"5","nomType":"Communication"},{"idType":"6","nomType":"Autres"}];
@@ -175,6 +175,8 @@
 					let searchedState = item.taskState;
 					let foundState = etat.find(stateElement => stateElement.idEtat == searchedState).nomEtat;
 
+					let style = "";
+
 					if(searchedState == 4) {
 						let row = `
 							<tr id="row_${item.taskId}">
@@ -218,8 +220,12 @@
 							document.getElementById(`selState_${item.taskId}`).insertAdjacentHTML('beforeend',option);
 						});
 
+						if(item.taskEnd < date || item.taskStart < date) {
+							style = style + "color: #F00"
+						}
+
 						if(impair) {
-							document.getElementById(`row_${item.taskId}`).style = "background: #CCC"
+							style = style + "background: #CCC;"
 						}
 
 						impair = !impair;
