@@ -21,7 +21,7 @@
 
 		<script type="text/javascript">
 			let priorite=[{"idPriorite":"1","nomPriorite":"Obligatoire & Urgent"},{"idPriorite":"2","nomPriorite":"Obligatoire"},{"idPriorite":"3","nomPriorite":"Important"},{"idPriorite":"4","nomPriorite":"Optionnel"}]
-			let etat=[{"idEtat":"1","nomEtat":"Pas commencé"},{"idEtat":"2","nomEtat":"En cours"},{"idEtat":"3","nomEtat":"Fini"}];
+			let etat=[{"idEtat":"1","nomEtat":"Pas commencé"},{"idEtat":"2","nomEtat":"En cours"},{"idEtat":"3","nomEtat":"Fini"},{"idEtat":"4","nomEtat":"Abandonné"}];
 			console.log(etat);
 			console.log(priorite);
 			let type=[{"idType":"1","nomType":"Game Design"},{"idType":"2","nomType":"Programmation"},{"idType":"3","nomType":"Game Art"},{"idType":"4","nomType":"Sound Design"},{"idType":"5","nomType":"Communication"},{"idType":"6","nomType":"Autres"}];
@@ -103,7 +103,7 @@
 
 				let style = "";
 
-				if(searchedState != 3) {
+				if(searchedState < 3) {
 					let row = `
 						<tr id="row_${item.taskId}">
 							<td id="id_${item.taskId}">
