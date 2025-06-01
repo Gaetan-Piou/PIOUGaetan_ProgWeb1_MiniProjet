@@ -12,6 +12,7 @@
 				padding: 5px;
 				grid-template-columns: minmax(150px, 1fr);
 				box-sizing: border-box;
+				
 			}
 
 			table {
@@ -19,7 +20,7 @@
 			}
 		</style>
 
-		<script type="text/javascript">
+		<script>
 			let priorite=[{"idPriorite":"1","nomPriorite":"Obligatoire & Urgent"},{"idPriorite":"2","nomPriorite":"Obligatoire"},{"idPriorite":"3","nomPriorite":"Important"},{"idPriorite":"4","nomPriorite":"Optionnel"}]
 			let etat=[{"idEtat":"1","nomEtat":"Pas commencé"},{"idEtat":"2","nomEtat":"En cours"},{"idEtat":"3","nomEtat":"Fini"},{"idEtat":"4","nomEtat":"Abandonné"}];
 			console.log(etat);
@@ -28,9 +29,11 @@
 			console.log(type);
 			let personnes=[{"idPers":1, "nomPers":"Gaëtan"},{"idPers":2, "nomPers":"Joffrey"},{"idPers":3, "nomPers": "Luc"},{"idPers":4, "nomPers": "Nicolas"},{"idPers":4, "nomPers": "P-A"}];
 
+
 			let taskList = [];
 			let dataString = localStorage.getItem("tasks");
 			console.log(dataString);
+
 
 			if(dataString != "" && dataString != null) {
 				taskList = JSON.parse(dataString);
@@ -41,7 +44,6 @@
 			const date = new Date().toJSON().slice(0,10);
 			console.log(date);
 
-			let sortMethod()
 
 			function stateChange(id) {
 				let changedElem = taskList.find(taskElem => taskElem.taskId == id);
@@ -51,47 +53,8 @@
 				localStorage.setItem("tasks", taskListString);
 				initialisationTableau();
 			}
-		</script>
-	</head>
 
 
-	<body style="text-align: center;">
-		<h1>Liste des tâches</h1>
-		<h2>Tâches à faire</h2>
-		<table>
-			<thead style="color: #FFFFFF; background: #000000;">
-				<tr>
-					<th id="idH">
-						ID
-					</th>
-					<th id="nameH">
-						Nom
-					</th>
-					<th id="typeH">
-						Type
-					</th>
-					<th id="startH">
-						Début
-					</th>
-					<th id="endH">
-						Fin
-					</th>
-					<th id="persH">
-						Personne assignée
-					</th>
-					<th id="prioH">
-						Importance
-					</th>
-					<th id="statH">
-						État
-					</th>
-				</tr>
-			</thead>
-			<tbody id="tableau">
-			</tbody>
-		</table>
-
-		<script type="text/javascript">
 			function initialisationTableau() {
 				document.getElementById("tableau").innerHTML = "";
 				let impair = true;
@@ -250,6 +213,47 @@
 				}
 			}
 
+		</script>
+	</head>
+
+
+	<body style="text-align: center;">
+		<h1>Liste des tâches</h1>
+		<h2>Tâches à faire</h2>
+		<table>
+			<thead style="color: #FFFFFF; background: #000000;">
+				<tr>
+					<th id="IdH">
+						ID
+					</th>
+					<th id="NameH">
+						Nom
+					</th>
+					<th id="TypeH">
+						Type
+					</th>
+					<th id="StartH">
+						Début
+					</th>
+					<th id="EndH">
+						Fin
+					</th>
+					<th id="PersH">
+						Personne assignée
+					</th>
+					<th id="PriorityH">
+						Importance
+					</th>
+					<th id="StateH">
+						État
+					</th>
+				</tr>
+			</thead>
+			<tbody id="tableau">
+			</tbody>
+		</table>
+
+		<script>
 			initialisationTableau();
 		</script>
 
