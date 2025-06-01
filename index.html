@@ -6,14 +6,13 @@
 		<title>Formulaire taches</title>
 
 		<script>
-			let Priorite=[{"idPriorite":1,"nomPriorite":"Obligatoire & Urgent"},{"idPriorite":2,"nomPriorite":"Obligatoire"},{"idPriorite":3,"nomPriorite":"Important"},{"idPriorite":4,"nomPriorite":"Optionnel"}]
-			let Etat=[{"idEtat":1,"nomEtat":"Pas commence"},{"idEtat":2,"nomEtat":"En cours"},{"idEtat":4,"nomEtat":"Fini"}];
-			console.log(Etat);
-			console.log(Priorite);
-			let Type=[{"idType":1,"nomType":"Game Design"},{"idType":2,"nomType":"Programmation"},{"idType":3,"nomType":"Game Art"},{"idType":4,"nomType":"Sound Design"},{"idType":5,"nomType":"Communication"},{"idType":6,"nomType":"Autres"}];
-			console.log(Type);
-			let Personnes=[{"idPers":1, "nomPers":"Gaëtan"},{"idPers":2, "nomPers":"Joffrey"},{"idPers":3, "nomPers": "Luc"},{"idPers":4, "nomPers": "Nicolas"},{"idPers":4, "nomPers": "P-A"}];
-			console.log(Personnes);
+			let priorite=[{"idPriorite":"1","nomPriorite":"Obligatoire & Urgent"},{"idPriorite":"2","nomPriorite":"Obligatoire"},{"idPriorite":"3","nomPriorite":"Important"},{"idPriorite":"4","nomPriorite":"Optionnel"}]
+			let etat=[{"idEtat":"1","nomEtat":"Pas commencé"},{"idEtat":"2","nomEtat":"En cours"},{"idEtat":"3","nomEtat":"Fini"},{"idEtat":"4","nomEtat":"Abandonné"}];
+			console.log(etat);
+			console.log(priorite);
+			let type=[{"idType":"1","nomType":"Game Design"},{"idType":"2","nomType":"Programmation"},{"idType":"3","nomType":"Game Art"},{"idType":"4","nomType":"Sound Design"},{"idType":"5","nomType":"Communication"},{"idType":"6","nomType":"Autres"}];
+			console.log(type);
+			let personnes=[{"idPers":1, "nomPers":"Gaëtan"},{"idPers":2, "nomPers":"Joffrey"},{"idPers":3, "nomPers": "Luc"},{"idPers":4, "nomPers": "Nicolas"},{"idPers":4, "nomPers": "P-A"}];
 
 			let taskList = [];
 			let dataString = localStorage.getItem("tasks");
