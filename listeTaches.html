@@ -31,6 +31,7 @@
 			let taskList = [];
 			let dataString = localStorage.getItem("tasks");
 			console.log(dataString);
+
 			if(dataString != "" && dataString != null) {
 				taskList = JSON.parse(dataString);
 			}
@@ -39,6 +40,8 @@
 
 			const date = new Date().toJSON().slice(0,10);
 			console.log(date);
+
+			let sortMethod()
 
 			function stateChange(id) {
 				let changedElem = taskList.find(taskElem => taskElem.taskId == id);
@@ -55,31 +58,31 @@
 	<body style="text-align: center;">
 		<h1>Liste des tâches</h1>
 		<h2>Tâches à faire</h2>
-		<table width="100%">
+		<table>
 			<thead style="color: #FFFFFF; background: #000000;">
 				<tr>
-					<th>
+					<th id="idH">
 						ID
 					</th>
-					<th>
+					<th id="nameH">
 						Nom
 					</th>
-					<th>
+					<th id="typeH">
 						Type
 					</th>
-					<th>
+					<th id="startH">
 						Début
 					</th>
-					<th>
+					<th id="endH">
 						Fin
 					</th>
-					<th>
+					<th id="persH">
 						Personne assignée
 					</th>
-					<th>
+					<th id="prioH">
 						Importance
 					</th>
-					<th>
+					<th id="statH">
 						État
 					</th>
 				</tr>
