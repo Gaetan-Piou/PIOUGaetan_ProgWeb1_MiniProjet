@@ -87,7 +87,7 @@
 				<option value="" selected disabled>-- Choisissez qui est assigné·e --</option>
 			</select><br>
 			<script>
-				Personnes.forEach(function(item, index) {
+				personnes.forEach(function(item, index) {
 					let option=`<option value="${item.idPers}">${item.nomPers}</option>`;
 					document.getElementById("personnes").insertAdjacentHTML('beforeend',option);
 				});
