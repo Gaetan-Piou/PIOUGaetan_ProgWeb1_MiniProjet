@@ -74,7 +74,7 @@
 				<option value="" selected disabled>-- Choisissez un type --</option>
 			</select><br>
 			<script>
-				Type.forEach(function(item, index) {
+				type.forEach(function(item, index) {
 					let option=`<option value="${item.idType}">${item.nomType}</option>`;
 					document.getElementById("type").insertAdjacentHTML('beforeend',option);
 				});
@@ -97,7 +97,7 @@
 				<option value="" selected disabled>-- Choisissez votre priorité --</option>
 			</select><br>
 			<script>
-				Priorite.forEach(function(item, index) {
+				priorite.forEach(function(item, index) {
 					let option=`<option value="${item.idPriorite}">${item.nomPriorite}</option>`;
 					document.getElementById("priorite").insertAdjacentHTML('beforeend',option);
 				});
@@ -107,7 +107,7 @@
 				<option value="" selected disabled>-- Quel est l'état de la tâche ?</option>
 			</select><br><br>
 			<script>
-				Etat.forEach(function(item, index) {
+				etat.forEach(function(item, index) {
 					let option=`<option value="${item.idEtat}">${item.nomEtat}</option>`;
 					document.getElementById("etat").insertAdjacentHTML('beforeend',option);
 				});
